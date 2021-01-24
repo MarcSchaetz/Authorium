@@ -10,6 +10,7 @@
 
 #include <string>
 #include <string_view>
+#include <vector>
 
 namespace Authorium::core
 {
@@ -19,11 +20,19 @@ namespace Authorium::core
         [[nodiscard]] std::string getProjectName() const noexcept;
         void setProjectName(std::string_view value);
 
+		[[nodiscard]] std::vector<std::string> getAuthors() const noexcept;
+		void addAuthor(const std::string& author);
 
     private:
        std::string projectName_;
+	   std::vector<std::string> authors_;
     };
+
+Project createNewProject(std::string_view path, const std::string& name);
+Project loadProject(std::string_view path);
+void saveProject(std::string_view path);
 }
+
 
  #endif // AUTHORIUM_PROJECT_H
 
